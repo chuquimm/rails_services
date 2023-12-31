@@ -2,7 +2,7 @@
 
 module Projects
   # Projects::Create service
-  class Create < CreateRecordService
+  class Create < CreateRecord
     def call
       @project = ::Project.new(@params)
       @project.save

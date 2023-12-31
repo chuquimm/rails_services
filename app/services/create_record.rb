@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # CreateRecordService
-class CreateRecordService
+class CreateRecord
   def initialize(params)
     @params = params
   end

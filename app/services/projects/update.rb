@@ -2,6 +2,6 @@
 
 module Projects
   # Projects::Update service
-  class Update < UpdateRecordService
+  class Update < UpdateRecord
   end
 end
