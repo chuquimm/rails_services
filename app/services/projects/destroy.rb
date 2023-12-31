@@ -2,15 +2,6 @@
 
 module Projects
   # ::Projects::Destroy
-  class Destroy
-    def initialize(project)
-      @project = project
-    end
-
-    def call
-      @project.destroy
-    rescue ActiveRecord::InvalidForeignKey
-      false
-    end
+  class Destroy < DestroyRecord
   end
 end
