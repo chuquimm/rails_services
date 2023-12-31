@@ -3,10 +3,8 @@
 module Projects
   # Projects::Create service
   class Create < CreateRecord
-    def call
-      @project = ::Project.new(@params)
-      @project.save
-      @project
+    def initialize(params)
+      super(::Project, params)
     end
   end
 end

@@ -2,9 +2,14 @@
 
 # CreateRecordService
 class CreateRecord
-  def initialize(params)
+  def initialize(model, params)
+    @model = model
     @params = params
   end
 
-  def call; end
+  def call
+    @record = @model.new(@params)
+    @record.save
+    @record
+  end
 end
