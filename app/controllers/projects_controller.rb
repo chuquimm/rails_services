@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = ::Projects::Create.new(project_params).call
+    @project = ::Projects::Create.new(project_params).call.record
 
     respond_to do |format|
       if @project.persisted?
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
     respond_to do |format|
-      if ::Projects::Update.new(@project, project_params).call
+      if ::Projects::Update.new(@project, project_params).call.completed
         format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
