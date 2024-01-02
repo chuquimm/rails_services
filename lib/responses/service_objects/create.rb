@@ -2,7 +2,7 @@
 
 module Responses
   module ServiceObjects
-    # Basic Response to Create Record on ServiceObject
+    # Basic Response to Create a Record on ServiceObject
     class Create < Responses::ServiceObject
       attr_accessor :params, :errors
 
