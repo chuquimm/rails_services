@@ -15,7 +15,7 @@ module Responses
 
       def destroyed
         @status = StatusCodes::Success.ok
-        complete_service
+        set_service_successful
       end
 
       def unprocessabled

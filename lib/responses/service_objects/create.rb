@@ -17,7 +17,7 @@ module Responses
       def created(record)
         @record = record
         @status = StatusCodes::Success.created
-        complete_service
+        set_service_successful
       end
 
       def unprocessabled(record)

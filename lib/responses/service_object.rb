@@ -3,7 +3,7 @@
 module Responses
   # Basic Response to Service Objects
   class ServiceObject
-    attr_accessor :record, :status, :message, :completed
+    attr_accessor :record, :status, :message, :successful
 
     StatusCodes = ::Responses::StatusCodes
 
@@ -11,11 +11,11 @@ module Responses
       @record = nil
       @status = StatusCodes::Informational.processing
       @message = message
-      @completed = false
+      @successful = false
     end
 
-    def complete_service
-      @completed = true
+    def set_service_successful
+      @successful = true
     end
   end
 end
