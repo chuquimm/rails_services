@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module <%= @service_module %>
+  # ::<%= @service_module %>::Create
+  # [Modified by] rails generate init_services <%= file_name %>
+  # [Last modified] <%= Date.today.to_s %>
+  class Create < CreateRecord
+    # Set params to create a new <%= file_name.singularize.underscore %>.
+    # [Modified by] rails generate init_services <%= file_name %>
+    # [Last modified] <%= Date.today.to_s %>
+    def initialize(params)
+      super(@service_model, params)
+    end
+  end
+end

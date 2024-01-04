@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+module <%= @service_module %>
+  # ::<%= @service_module %>::Destroy
+  # [Modified by] rails generate init_services <%= file_name %>
+  # [Last modified] <%= Date.today.to_s %>
+  class Destroy < DestroyRecord
+  end
+end
+
