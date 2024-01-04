@@ -4,14 +4,13 @@ module Responses
   module ServiceObjects
     # Basic Response to Create a Record on ServiceObject
     class Create < Responses::ServiceObject
-      attr_accessor :params, :errors
+      attr_accessor :params
 
       def initialize(params)
         super()
         @record = nil
         @params = params
         @status = StatusCodes::Success.accepted
-        @errors = ActiveModel::Errors.new(@record)
       end
 
       def created(record)
@@ -22,7 +21,6 @@ module Responses
 
       def unprocessabled(record)
         @record = record
-        @errors = record.errors
         @status = StatusCodes::ClientError.unprocessable_entity
       end
     end

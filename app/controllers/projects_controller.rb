@@ -50,11 +50,14 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    ::Projects::Destroy.new(@project).call
-
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
+      if ::Projects::Destroy.new(@project).call.successful
+        format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to projects_url, notice: 'Project was NOT  destroyed.', status: :unprocessable_entity }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
 

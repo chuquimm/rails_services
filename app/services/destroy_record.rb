@@ -13,7 +13,8 @@ class DestroyRecord
     after_process
     @response.destroyed
     @response
-  rescue ActiveRecord::InvalidForeignKey
+  rescue ActiveRecord::InvalidForeignKey => e
+    @record.errors.add(:base, :fk_constraint, message: e.cause.message)
     @response.unprocessabled
     @response
   end

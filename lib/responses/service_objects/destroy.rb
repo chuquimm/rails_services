@@ -4,13 +4,10 @@ module Responses
   module ServiceObjects
     # Basic Response to Destroy a Record on ServiceObject
     class Destroy < Responses::ServiceObject
-      attr_accessor :errors
-
       def initialize(record)
         super()
         @record = record
         @status = StatusCodes::Success.accepted
-        @errors = ActiveModel::Errors.new(@record)
       end
 
       def destroyed
