@@ -8,9 +8,9 @@ class DestroyRecord
   end
 
   def call
-    before_process
+    before_save_process
     @record.destroy
-    after_process
+    after_save_process
     @response.destroyed
     @response
   rescue ActiveRecord::InvalidForeignKey => e
@@ -21,7 +21,7 @@ class DestroyRecord
 
   private
 
-  def after_process; end
+  def after_save_process; end
 
-  def before_process; end
+  def before_save_process; end
 end

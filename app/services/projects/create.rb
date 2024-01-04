@@ -6,5 +6,11 @@ module Projects
     def initialize(params)
       super(::Project, params)
     end
+
+    private
+
+    def after_save_process
+      ::Deliverable.create(name: 'Scope', deadline: Date.today + 1.week)
+    end
   end
 end
