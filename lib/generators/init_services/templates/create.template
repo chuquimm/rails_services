@@ -9,7 +9,7 @@ module <%= @service_module %>
     # [Modified by] rails generate init_services <%= file_name %>
     # [Last modified] <%= Date.today.to_s %>
     def initialize(params)
-      super(@service_model, params)
+      super(<%= @service_model %>, params)
     end
   end
 end
