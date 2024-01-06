@@ -2,7 +2,7 @@
 
 # CreateRecordService
 class CreateRecord
-  attr_accessor :model, :record, :params, :response
+  attr_reader :model, :record, :params, :response
 
   def initialize(model, params)
     @model = model
