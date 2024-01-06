@@ -19,17 +19,12 @@ class UpdateRecord
 
   private
 
-  def before_save_process; end
-
   def process(result)
     if result
-      after_save_process
       @response.updated
     else
       @response.unprocessabled
     end
     result
   end
-
-  def after_save_process; end
 end
