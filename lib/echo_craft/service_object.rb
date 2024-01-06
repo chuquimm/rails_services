@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
-module Responses
+module EchoCraft
   # Basic Response to Service Objects
-  class ServiceObject
-    attr_accessor :record, :status, :message, :successful
-
-    StatusCodes = ::Responses::StatusCodes
+  class ServiceObject < EchoCraft::Response
+    attr_accessor :record, :successful
 
     def initialize(message: '')
+      super(message:)
       @record = nil
-      @status = StatusCodes::Informational.processing
-      @message = message
       @successful = false
+      @status = ::Rack::Utils.status_code(:accepted)
     end
 
     def set_service_successful

@@ -7,7 +7,7 @@ class CreateRecord
   def initialize(model, params)
     @model = model
     @params = params
-    @response = ::Responses::ServiceObjects::Create.new(@params)
+    @response = ::EchoCraft::ServiceObjects::Create.new(@params)
   end
 
   def call

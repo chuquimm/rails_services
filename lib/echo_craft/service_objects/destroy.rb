@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
-module Responses
+module EchoCraft
   module ServiceObjects
     # Basic Response to Destroy a Record on ServiceObject
-    class Destroy < Responses::ServiceObject
+    class Destroy < EchoCraft::ServiceObject
       def initialize(record)
         super()
         @record = record
-        @status = StatusCodes::Success.accepted
       end
 
       def destroyed
-        @status = StatusCodes::Success.ok
+        @status = ::Rack::Utils.status_code(:ok)
         set_service_successful
       end
 
       def unprocessabled
-        @status = StatusCodes::ClientError.unprocessable_entity
+        @status = ::Rack::Utils.status_code(:unprocessable_entity)
       end
     end
   end

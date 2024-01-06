@@ -8,7 +8,7 @@ class UpdateRecord
     @record = record
     @model = @record.class
     @params = params
-    @response = ::Responses::ServiceObjects::Update.new(@record, @params)
+    @response = ::EchoCraft::ServiceObjects::Update.new(@record, @params)
   end
 
   def call

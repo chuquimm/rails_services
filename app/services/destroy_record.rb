@@ -4,7 +4,7 @@
 class DestroyRecord
   def initialize(record)
     @record = record
-    @response = ::Responses::ServiceObjects::Destroy.new(@record)
+    @response = ::EchoCraft::ServiceObjects::Destroy.new(@record)
   end
 
   def call
