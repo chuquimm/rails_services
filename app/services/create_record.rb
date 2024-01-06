@@ -11,14 +11,18 @@ class CreateRecord
   end
 
   def call
-    @record = @model.new(@params)
-    process @record.save
+    begin
+      @record = @model.new(@params)
+      process_record_create @record.save
+    rescue StandardError
+      @response.unprocessabled
+    end
     @response
   end
 
   private
 
-  def process(result)
+  def process_record_create(result)
     if result
       @response.created(@record)
     else

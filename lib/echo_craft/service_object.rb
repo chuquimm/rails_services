@@ -5,8 +5,8 @@ module EchoCraft
   class ServiceObject < EchoCraft::Response
     attr_accessor :record, :successful
 
-    def initialize(message: '')
-      super(message:)
+    def initialize
+      super
       @record = nil
       @successful = false
       @status = change_status(:accepted)

@@ -8,12 +8,15 @@ class DestroyRecord
   end
 
   def call
-    @record.destroy
-    @response.destroyed
-    @response
-  rescue ActiveRecord::InvalidForeignKey => e
-    @record.errors.add(:base, :fk_constraint, message: e.cause.message)
-    @response.unprocessabled
+    begin
+      @record.destroy
+      @response.destroyed
+    rescue ActiveRecord::InvalidForeignKey => e
+      @record.errors.add(:base, :fk_constraint, message: e.cause.message)
+      @response.unprocessabled
+    rescue StandardError
+      @response.unprocessabled
+    end
     @response
   end
 end

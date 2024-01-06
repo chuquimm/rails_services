@@ -12,15 +12,13 @@ module Projects
       super(::Project, params)
     end
 
-    private
-
-    # Processes to do after save the project.
-    # [Modified by] chuquimm
-    # [Last modified] 2024-01-04
-    def after_save_process
-      create_scope_deliverable
+    def call
       super()
+      create_scope_deliverable
+      @response
     end
+
+    private
 
     # Create intance of ::Deliverable to decribe the project's scope.
     # [Modified by] chuquimm

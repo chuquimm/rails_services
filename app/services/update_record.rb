@@ -12,14 +12,18 @@ class UpdateRecord
   end
 
   def call
-    @record.assign_attributes(@params)
-    process @record.save
+    begin
+      @record.assign_attributes(@params)
+      process_record_update @record.save
+    rescue StandardError
+      @response.unprocessabled
+    end
     @response
   end
 
   private
 
-  def process(result)
+  def process_record_update(result)
     if result
       @response.updated
     else
