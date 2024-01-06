@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module <%= @service_module %>
-  # ::<%= @service_module %>::Create
+  # Service object to create a(n) <%= file_name %>
   # [Modified by] rails generate init_services <%= file_name %>
   # [Last modified] <%= Date.today.to_s %>
   class Create < CreateRecord
