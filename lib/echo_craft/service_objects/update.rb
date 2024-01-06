@@ -13,12 +13,8 @@ module EchoCraft
       end
 
       def updated
-        @status = ::Rack::Utils.status_code(:ok)
+        change_status(:ok)
         set_service_successful
-      end
-
-      def unprocessabled
-        @status = ::Rack::Utils.status_code(:unprocessable_entity)
       end
     end
   end

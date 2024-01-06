@@ -14,13 +14,13 @@ module EchoCraft
 
       def created(record)
         @record = record
-        @status = ::Rack::Utils.status_code(:created)
+        change_status(:created)
         set_service_successful
       end
 
       def unprocessabled(record)
         @record = record
-        @status = ::Rack::Utils.status_code(:unprocessable_entity)
+        super()
       end
     end
   end
