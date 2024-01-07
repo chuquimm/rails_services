@@ -16,7 +16,7 @@ module ServiCraft
              before_update: proc {},
              after_successful_update: proc {},
              after_failed_update: proc {},
-             after_update: proc {})
+             finally: proc {})
       begin
         before_assign_attributes.call
         @record.assign_attributes(@params)
@@ -25,7 +25,7 @@ module ServiCraft
       rescue StandardError
         @response.unprocessabled
       end
-      after_update.call
+      finally.call
       @response
     end
 

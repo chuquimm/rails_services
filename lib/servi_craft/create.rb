@@ -13,9 +13,9 @@ module ServiCraft
 
     def call(before_assign_attributes: proc {},
              before_create: proc {},
-             after_create: proc {},
              after_successful_create: proc {},
-             after_failed_create: proc {})
+             after_failed_create: proc {},
+             finally: proc {})
       begin
         before_assign_attributes.call
         @record = @model.new(@params)
@@ -24,7 +24,7 @@ module ServiCraft
       rescue StandardError
         @response.unprocessabled
       end
-      after_create.call
+      finally.call
       @response
     end
 

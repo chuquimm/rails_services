@@ -11,11 +11,11 @@ module ServiCraft
     def call(before_destroy: proc {},
              after_successful_destroy: proc {},
              after_failed_destroy: proc {},
-             after_destroy: proc {})
+             finally: proc {})
 
       before_destroy.call
       process_record_destroy(after_successful_destroy:, after_failed_destroy:)
-      after_destroy.call
+      finally.call
 
       @response
     end
