@@ -22,7 +22,7 @@ module ServiCraft
         before_create.call
         process_record_create @record.save, after_successful_create:, after_failed_create:
       rescue StandardError
-        @response.unprocessabled(@record)
+        fail_create(after_failed_create:)
       end
       finally.call
       @response
@@ -35,9 +35,13 @@ module ServiCraft
         after_successful_create.call
         @response.created(@record)
       else
-        after_failed_create.call
-        @response.unprocessabled(@record)
+        fail_create(after_failed_create:)
       end
+    end
+
+    def fail_create(after_failed_create: proc {})
+      after_failed_create.call
+      @response.unprocessabled(@record)
     end
   end
 end
