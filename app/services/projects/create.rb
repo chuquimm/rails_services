@@ -4,7 +4,7 @@ module Projects
   # ::Projects::Create
   # [Modified by] rails generate init_services project
   # [Last modified] 2024-01-04
-  class Create < CreateRecord
+  class Create < ServiCraft::Create
     # Set params to create a new project.
     # [Modified by] rails generate init_services project
     # [Last modified] 2024-01-04

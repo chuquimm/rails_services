@@ -4,7 +4,7 @@ module <%= @service_module %>
   # Service object to create a new <%= file_name.singularize.underscore %>.
   # [Modified by] rails generate init_services <%= file_name %>
   # [Last modified] <%= Date.today.to_s %>
-  class Create < CreateRecord
+  class Create < ServiCraft::Create
     # Set params to create a new <%= file_name.singularize.underscore %>.
     # [Modified by] rails generate init_services <%= file_name %>
     # [Last modified] <%= Date.today.to_s %>

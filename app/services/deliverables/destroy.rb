@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Deliverables
-  # ::Deliverables::Destroy
+  # Service object to destroy the deliverable
   # [Modified by] rails generate init_services deliverable
-  # [Last modified] 2024-01-04
-  class Destroy < DestroyRecord
+  # [Last modified] 2024-01-07
+  class Destroy < ServiCraft::Destroy
   end
 end
 
