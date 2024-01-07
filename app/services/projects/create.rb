@@ -13,9 +13,7 @@ module Projects
     end
 
     def call
-      super()
-      create_scope_deliverable
-      @response
+      super(after_successful_create: proc { create_scope_deliverable })
     end
 
     private

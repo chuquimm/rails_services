@@ -14,13 +14,13 @@ module ServiCraft
     def call(before_assign_attributes: proc {},
              before_create: proc {},
              after_create: proc {},
-             after_successfull_create: proc {},
+             after_successful_create: proc {},
              after_failed_create: proc {})
       begin
         before_assign_attributes.call
         @record = @model.new(@params)
         before_create.call
-        process_record_create @record.save, after_successfull_create:, after_failed_create:
+        process_record_create @record.save, after_successful_create:, after_failed_create:
       rescue StandardError
         @response.unprocessabled
       end
@@ -30,9 +30,9 @@ module ServiCraft
 
     private
 
-    def process_record_create(result, after_successfull_create: proc {}, after_failed_create: proc {})
+    def process_record_create(result, after_successful_create: proc {}, after_failed_create: proc {})
       if result
-        after_successfull_create.call
+        after_successful_create.call
         @response.created(@record)
       else
         after_failed_create.call
