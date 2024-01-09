@@ -3,10 +3,11 @@
 module EchoCraft
   # Basic Response with EchoCraft Struct
   class Response
-    attr_reader :status, :message
+    attr_reader :status, :message, :data
 
     def initialize
       change_status(:processing)
+      @data = ::OpenStruct.new
     end
 
     def status=(status)
