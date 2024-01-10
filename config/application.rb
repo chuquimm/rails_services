@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,7 +16,14 @@ module RailsServices
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
+    config.autoload_paths << Rails.root.join('config', 'routes')
+
+    config.generators do |generate|
+      generate.template_engine :erb
+      generate.resource_route false # TODO: modificar generador de scaffold para que llamen al generador modificado.
+      generate.helper false
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

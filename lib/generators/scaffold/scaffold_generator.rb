@@ -15,6 +15,7 @@ module Rails
       hook_for :scaffold_controller, required: true
 
       invoke :init_services
+      invoke :route
     end
   end
 end
