@@ -1,0 +1,9 @@
+<%= @language %>:
+  activerecord:
+    attributes:
+      <%= "#{@modules.join('/')}" %><%= @modules.empty? ? '' : '/'%><%= "#{file_name.underscore}" %>:<% attributes.map(&:name).each do |attribute| %>
+        <%=attribute%>: '<%=attribute%>'<% end %>
+    errors:
+      models:
+          <%= "#{@modules.join('/')}" %><%= @modules.empty? ? '' : '/'%><%= "#{file_name.underscore}" %>:
+            attributes:

@@ -16,6 +16,7 @@ module Rails
 
       invoke :init_services
       invoke :route
+      invoke :translator
     end
   end
 end
