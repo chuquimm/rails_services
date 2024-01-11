@@ -2,33 +2,33 @@
   view:
     <%= @modules.join('/') %><%="#{@modules.empty? ? '' : '/'}"%><%= "#{file_name.pluralize.underscore}" %>:
       index:
-        title: 'Gestionar [plural_model]'
-        new_link: 'Crear [singular_model]'
+        title: 'Gestionar <%= @dic[:plural] %>'
+        new_link: 'Crear <%= @dic[:singular] %>'
         show_link: 'Configurar'
       show:
-        back_link: 'Volver a la lista de [plural_model]'
-        title: 'Datos d[art_singular_model]'
+        back_link: 'Volver a la lista de <%= @dic[:plural] %>'
+        title: 'Datos <%= @dic[:dart_singular] %>'
         edit_link: 'Editar'
         edit_pass_link: 'Editar contraseña'
         edit_char_link: 'Editar'
         destroy_link: 'Eliminar'
-        destroy_confirm_message: '¿Está seguro de eliminar [art_singular_model]?'
+        destroy_confirm_message: '¿Está seguro de eliminar <%= @dic[:art_singular] %>?'
       new:
-        back_link: 'Volver a la lista de [plural_model]'
-        form_title: 'Crear [singular_model]'
+        back_link: 'Volver a la lista de <%= @dic[:plural] %>'
+        form_title: 'Crear <%= @dic[:singular] %>'
         save_button: 'Crear'
       create:
-        back_link: 'Volver a la lista de [plural_model]'
-        form_title: 'Crear [singular_model]'
+        back_link: 'Volver a la lista de <%= @dic[:plural] %>'
+        form_title: 'Crear <%= @dic[:singular] %>'
         save_button: 'Crear'
       edit:
-        back_link: 'Volver a configurar [art_singular_model]'
-        form_title: 'Editar [singular_model]'
+        back_link: 'Volver a configurar <%= @dic[:art_singular] %>'
+        form_title: 'Editar <%= @dic[:singular] %>'
         form_photo_message: 'Archivo formato jpg o png, menor a 1mb'
         save_button: 'Guardar'
       update:
-        back_link: 'Volver a configurar [art_singular_model]'
-        form_title: 'Editar [singular_model]'
+        back_link: 'Volver a configurar <%= @dic[:art_singular] %>'
+        form_title: 'Editar <%= @dic[:singular] %>'
         save_button: 'Guardar'
       _show_basic_info:
         title: 'Usuario'

@@ -11,11 +11,11 @@ class TranslatorGenerator < Rails::Generators::NamedBase
     @modules = Array(regular_class_path)
     options.languages.each do |language|
       @language = language
+      ask_labels unless behavior == :revoke
       locales_types.each do |locales_type|
         dir = "#{locales_dir(locales_type)}/#{language}.yml"
         template_path = "#{locales_type}/#{language}.template"
         template template_path, dir
-        ask_labels
       end
     end
   end
@@ -31,6 +31,23 @@ class TranslatorGenerator < Rails::Generators::NamedBase
   end
 
   def ask_labels
-    # a = ask('Holaaa')
+    @dic = {
+      singular: ask('[singular_model]:'),
+      plural: ask('[plural_model]:'),
+      art: ask('[art]:'),
+      dart: ask('[dart]:'),
+      termination: ask('[a/o/e]')
+    }
+    @dic[:art_singular] = "#{@dic[:art]} #{@dic[:singular]}"
+    @dic[:dart_singular] = "#{@dic[:dart]} #{@dic[:singular]}"
+    ask_attributes
+  end
+
+  def ask_attributes
+    @dic[:attributes] = {}
+    attributes.each do |attribute|
+      @dic[:attributes][attribute.name] = ask("#{attribute.name}: ")
+    end
+    @dic[:attributes]
   end
 end
