@@ -14,9 +14,9 @@ module Rails
 
       hook_for :scaffold_controller, required: true
 
-      invoke :servi_craft
-      invoke :route
-      invoke :translator
+      invoke :servi_craft # generate services
+      invoke :tour_route # generate routes
+      invoke :sobremesa # generate locales
     end
   end
 end
