@@ -4,11 +4,11 @@
 class InitServicesGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
-  class_option :modules, type: :array, default: []
+  class_option :services, type: :array, default: %w[create update destroy]
 
   def gen_init
     assign_service_params
-    services.each { |service| init service }
+    options.services.each { |service| init service }
   end
 
   private
@@ -30,10 +30,12 @@ class InitServicesGenerator < Rails::Generators::NamedBase
   end
 
   def init(service)
+    return unless defined_services.include? service
+
     template "#{service}.template", "#{@service_dir}/#{service}.rb"
   end
 
-  def services
-    %w[create update destroy]
+  def defined_services
+    %w[create update destroy query info]
   end
 end
