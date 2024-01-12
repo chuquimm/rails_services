@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # SobremesaGenerator
+# Generate locales to active_record, views and controllers
 class SobremesaGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
@@ -13,14 +14,18 @@ class SobremesaGenerator < Rails::Generators::NamedBase
       @language = language
       ask_labels unless behavior == :revoke
       locales_types.each do |locales_type|
-        dir = "#{locales_dir(locales_type)}/#{language}.yml"
-        template_path = "#{locales_type}/#{language}.template"
-        template template_path, dir
+        create_locales(locales_type, language)
       end
     end
   end
 
   private
+
+  def create_locales(locales_type, language)
+    dir = "#{locales_dir(locales_type)}/#{language}.yml"
+    template_path = "#{locales_type}/#{language}.template"
+    template template_path, dir
+  end
 
   def locales_types
     %w[active_record controller views]
