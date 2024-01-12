@@ -20,8 +20,7 @@ module RailsServices
     config.autoload_paths << Rails.root.join('config', 'routes')
 
     config.generators do |generate|
-      # generate.template_engine :erb
-      generate.resource_route false # TODO: modificar generador de scaffold para que llamen al generador modificado.
+      generate.resource_route false
       generate.helper false
     end
 
