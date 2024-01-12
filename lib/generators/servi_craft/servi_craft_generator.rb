@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # init base service Objects
-class InitServicesGenerator < Rails::Generators::NamedBase
+class ServiCraftGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   class_option :services, type: :array, default: %w[create update destroy]

@@ -11,11 +11,10 @@ module Rails
       class_option :api, type: :boolean,
                          desc: 'Generate API-only controller and tests, with no view templates'
       class_option :resource_route, type: :boolean
-      class_option :services, type: :array, default: %w[create update destroy]
 
       hook_for :scaffold_controller, required: true
 
-      invoke :init_services
+      invoke :servi_craft
       invoke :route
       invoke :translator
     end
