@@ -77,7 +77,10 @@ class RouteTourGenerator < Rails::Generators::NamedBase
 
   def create_module_route(selected_modules)
     @route_class_name = route_class_name(nil, mods: selected_modules)
-    template 'route.template', route_path(nil, mods: selected_modules)
+    path = route_path(nil, mods: selected_modules)
+    return if File.exist? path
+
+    template 'route.template', path
     prev_mods = selected_modules[..-2]
     prev_path = prev_mods.any? ? route_path(nil, mods: prev_mods) : root_routes
     after_line = prev_mods.any? ? "router.instance_exec do\n" : "routes.draw do\n"
