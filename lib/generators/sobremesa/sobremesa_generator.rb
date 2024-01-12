@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# TranslatorGenerator
-class TranslatorGenerator < Rails::Generators::NamedBase
+# SobremesaGenerator
+class SobremesaGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   class_option :languages, type: :array, default: ['es-PE']
