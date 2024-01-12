@@ -2,7 +2,7 @@
 
 module <%= @service_module %>
   # Service object to query <%= file_name.pluralize.underscore %>.
-  # [Modified by] rails generate init_services <%= file_name %>
+  # [Modified by] rails generate servi_craft <%= file_name %>
   # [Last modified] <%= Date.today.to_s %>
   class Query
   end
