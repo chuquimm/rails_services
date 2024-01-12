@@ -27,7 +27,7 @@ class TourRouteGenerator < Rails::Generators::NamedBase
   end
 
   def insert_route_file
-    if Array(regular_class_path)
+    if Array(regular_class_path).any?
       insert_extend_route(route_path(nil), @route_class_name, after: "router.instance_exec do\n", indentation: 6)
     else
       insert_extend_route(root_routes, @route_class_name)
