@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Route
-class TourRouteGenerator < Rails::Generators::NamedBase
+class RouteTourGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   def gen_init
