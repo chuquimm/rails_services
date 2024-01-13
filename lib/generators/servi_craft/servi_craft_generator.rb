@@ -4,7 +4,10 @@
 class ServiCraftGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
+  argument :attributes, type: :array, default: [], banner: 'field:type field:type'
+
   class_option :services, type: :array, default: %w[create update destroy]
+  class_option :parent_attribute, type: :string
 
   def gen_init
     assign_service_params
@@ -14,13 +17,28 @@ class ServiCraftGenerator < Rails::Generators::NamedBase
   private
 
   def assign_service_params
+    set_parent_attribute if options.parent_attribute
+    set_service_class_path
+    set_service_dir
+    @service_module = @service_class_path.map(&:camelcase).join('::')
+    set_service_model
+  end
+
+  def set_parent_attribute
+    parent_attr = options.parent_attribute
+    attrs = attributes.filter { |attr| attr.type == :references }
+    @parent_attribute = attrs.find { |attr| attr.name.downcase == parent_attr.downcase }
+  end
+
+  def set_service_class_path
     plural_name = name.pluralize
     @service_class_path = plural_name.include?('/') ? plural_name.split('/') : plural_name.split('::')
     @service_class_path.map!(&:underscore)
+  end
+
+  def set_service_dir
     @service_dir = @service_class_path.join('/')
     @service_dir = ['app', 'services', @service_class_path].flatten.compact.join('/')
-    @service_module = @service_class_path.map(&:camelcase).join('::')
-    set_service_model
   end
 
   def set_service_model
