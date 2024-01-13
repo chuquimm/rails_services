@@ -25,9 +25,7 @@ class ServiCraftGenerator < Rails::Generators::NamedBase
   end
 
   def set_parent_attribute
-    parent_attr = options.parent_attribute
-    attrs = attributes.filter { |attr| attr.type == :references }
-    @parent_attribute = attrs.find { |attr| attr.name.downcase == parent_attr.downcase }
+    @parent_attribute = ::ModelAncestry::Base.find_parent(attributes, options.parent_attribute)
   end
 
   def set_service_class_path
