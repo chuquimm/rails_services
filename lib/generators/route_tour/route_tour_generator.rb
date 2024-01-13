@@ -3,15 +3,22 @@
 # Route
 class RouteTourGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
+  class_option :parent_attribute, type: :string
+  argument :attributes, type: :array, default: [], banner: 'field:type field:type'
 
   def gen_init
     return if options[:actions].present?
 
+    set_parent_attribute
     create_module_files unless behavior == :revoke
     create_route_file
   end
 
   private
+
+  def set_parent_attribute
+    @parent_attribute = ::ModelAncestry::Base.find_parent(attributes, options.parent_attribute)
+  end
 
   def root_routes
     'config/routes.rb'
@@ -21,7 +28,7 @@ class RouteTourGenerator < Rails::Generators::NamedBase
     @route_class_name = route_class_name(file_name.pluralize.camelcase)
     template 'route.template', class_route_path
     insert_route_file
-    return if behavior == :revoke
+    return if behavior == :revoke || @parent_attribute
 
     route "resources :#{file_name.pluralize}", namespace: regular_class_path
   end

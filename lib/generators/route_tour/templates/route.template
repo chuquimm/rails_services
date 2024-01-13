@@ -3,7 +3,11 @@
 # <%=@route_class_name%>
 module <%=@route_class_name%>
   def self.extended(router)
-    router.instance_exec do
+    router.instance_exec do<% if @parent_attribute %>
+      resources :<%= file_name.pluralize.underscore %>, only: %i[show edit update destroy]
+
+      get '/<%= file_name.pluralize.underscore %>/new/:<%  @parent_attribute.index_name %>', to: '<%= file_name.pluralize.underscore %>#new', as: 'new_<%= file_name.underscore %>'
+      post '/<%= file_name.pluralize.underscore %>/create/:<%  @parent_attribute.index_name %>', to: '<%= file_name.pluralize.underscore %>#create', as: '<%= file_name.pluralize.underscore %>'<% end %>
     end
   end
 end
