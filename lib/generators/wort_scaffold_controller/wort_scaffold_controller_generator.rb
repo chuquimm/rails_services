@@ -88,10 +88,6 @@ module Rails
         attribute = attributes.find { |attr| attr.name == name }
         attribute&.attachments?
       end
-
-      def orm_parent_class
-        'Hola'
-      end
     end
   end
 end
