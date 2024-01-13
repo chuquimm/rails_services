@@ -7,8 +7,9 @@ class <%= controller_class_name %>Controller < ApplicationController<% if @paren
   before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
 
   # GET <%= route_url %>
-  def index
-    @<%= plural_table_name %> = ::<%= orm_class.all(class_name) %>
+  def index<% if @parent_attribute %>
+    @<%= plural_table_name %> = ::<%= orm_class.all(class_name) %>.where(<%=@parent_attribute.index_name  %>: params[:<%=@parent_attribute.index_name  %>])<% else %>
+    @<%= plural_table_name %> = ::<%= orm_class.all(class_name) %><% end %>
   end
 
   # GET <%= route_url %>/1
@@ -24,8 +25,8 @@ class <%= controller_class_name %>Controller < ApplicationController<% if @paren
 
   # POST <%= route_url %>
   def create<% if @parent_attribute %>
-    @<%= singular_table_name %> = <%= controller_class_name %>::Create.new(@<%= @parent_attribute.name %>, <%= "#{singular_table_name}_params" %>).call.record<% else %>
-    @<%= singular_table_name %> = <%= controller_class_name %>::Create.new(<%= "#{singular_table_name}_params" %>).call.record<% end %>
+    @<%= singular_table_name %> = ::<%= controller_class_name %>::Create.new(@<%= @parent_attribute.name %>, <%= "#{singular_table_name}_params" %>).call.record<% else %>
+    @<%= singular_table_name %> = ::<%= controller_class_name %>::Create.new(<%= "#{singular_table_name}_params" %>).call.record<% end %>
 
     if @<%= singular_table_name %>.persisted?
       redirect_to <%= redirect_resource_name %>, notice: <%= %('#{human_name} was successfully created.') %>
@@ -58,7 +59,7 @@ class <%= controller_class_name %>Controller < ApplicationController<% if @paren
   end
 <% if @parent_attribute %>
   def set_<%= @parent_attribute.name %>
-    @<%= @parent_attribute.name %> = ::<%= orm_class.find(@parent_attribute.name.camelize, "params[:#{@parent_attribute.name}_id]") %>
+    @<%= @parent_attribute.name %> = ::<%= orm_class.find(@parent_attribute.name.camelize, "params[:#{@parent_attribute.index_name}]") %>
   end
 <% end %>
   # Only allow a list of trusted parameters through.
