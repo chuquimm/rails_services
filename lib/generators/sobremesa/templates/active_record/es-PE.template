@@ -1,8 +1,12 @@
 <%= @language %>:
   activerecord:
     attributes:
-      <%= "#{@modules.join('/')}" %><%= @modules.empty? ? '' : '/'%><%= "#{file_name.underscore}" %>:<% attributes.map(&:name).each do |attribute| %>
-        <%=attribute%>: '<%= @dic[:attributes][attribute] %>'<% end %>
+      <%= "#{@modules.join('/')}" %><%= @modules.empty? ? '' : '/'%><%= "#{file_name.underscore}" %>:
+        _self:  '<%= @dic[:singular].capitalize %>'
+        _self_plural: '<%= @dic[:plural].capitalize %>'<% attributes.each do |attribute| %><% if attribute.reference? %>
+        <%=attribute.name%>: '<%= @dic[:attributes][attribute.name].capitalize %>'
+        <%=attribute.index_name%>: '<%= @dic[:attributes][attribute.name].capitalize %>'<% else %>
+        <%=attribute.name%>: '<%= @dic[:attributes][attribute.name].capitalize %>'<% end %><% end %>
     errors:
       models:
           <%= "#{@modules.join('/')}" %><%= @modules.empty? ? '' : '/'%><%= "#{file_name.underscore}" %>:
