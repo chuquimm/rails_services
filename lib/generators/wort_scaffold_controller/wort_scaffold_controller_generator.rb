@@ -72,7 +72,7 @@ module Rails
 
       def create_controller_files
         # template_file = options.api? ? 'api_controller.rb' : 'controller.rb'
-        template_file = 'controller.template'
+        template_file = 'controller.rb.tt'
         template template_file,
                  File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
       end
