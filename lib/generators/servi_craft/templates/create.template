@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
+require 'servi_craft/create'
 module <%= @service_module %>
   # Service object to create a new <%= file_name.singularize.underscore %>.
   # [Modified by] rails generate servi_craft <%= file_name %>
   # [Last modified] <%= Date.today.to_s %>
-  class Create < ServiCraft::Create
+  class <%= @service_class_name %> < ServiCraft::Create
     # Set params to create a new <%= file_name.singularize.underscore %>.
     # [Modified by] rails generate servi_craft <%= file_name %>
     # [Last modified] <%= Date.today.to_s %>
     <% if @parent_attribute %>def initialize(<%= @parent_attribute.name %>, params)
-      @<%= @parent_attribute.name %> = <%= @parent_attribute.name %><% else %>
-    def initialize(params)<% end %>
+      @<%= @parent_attribute.name %> = <%= @parent_attribute.name %><% else %>def initialize(params)<% end %>
       super(<%= @service_model %>, params)
     end<% if @parent_attribute %>
 

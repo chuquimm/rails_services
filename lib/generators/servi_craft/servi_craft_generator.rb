@@ -6,7 +6,7 @@ class ServiCraftGenerator < Rails::Generators::NamedBase
 
   argument :attributes, type: :array, default: [], banner: 'field:type field:type'
 
-  class_option :services, type: :array, default: %w[create update destroy]
+  class_option :services, type: :array, default: %w[create update destroy query]
   class_option :parent_attribute, type: :string
 
   def gen_init
@@ -46,9 +46,11 @@ class ServiCraftGenerator < Rails::Generators::NamedBase
   end
 
   def init(service)
-    return unless defined_services.include? service
+    type = service.underscore.split('_').first
+    type = 'info' unless defined_services.include? type
 
-    template "#{service}.template", "#{@service_dir}/#{service}.rb"
+    @service_class_name = service.camelize
+    template "#{type}.template", "#{@service_dir}/#{service}.rb"
   end
 
   def defined_services

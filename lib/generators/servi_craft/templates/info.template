@@ -4,7 +4,7 @@ module <%= @service_module %>
   # Service object to get info a record of <%= file_name.singularize.underscore %>.
   # [Modified by] rails generate servi_craft <%= file_name %>
   # [Last modified] <%= Date.today.to_s %>
-  class Info
+  class <%= @service_class_name %>
     # Set a record of <%= file_name.singularize.underscore %>.
     # [Modified by] rails generate servi_craft <%= file_name %>
     # [Last modified] <%= Date.today.to_s %>
