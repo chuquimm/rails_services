@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails/generators/resource_helpers'
+require 'model_ancestry/base'
 
 module Rails
   module Generators

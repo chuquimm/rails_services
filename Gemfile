@@ -71,4 +71,5 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'model-ancestry', '~> 0.1.0'
 gem 'servi-craft', '~> 0.1.1'

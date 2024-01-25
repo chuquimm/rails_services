@@ -1,5 +1,6 @@
 require 'rails/generators/erb/scaffold/scaffold_generator'
 require 'rails/generators/resource_helpers'
+require 'model_ancestry/base'
 
 module Tailwindcss
   module Generators

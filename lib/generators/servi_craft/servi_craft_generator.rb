@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'model_ancestry/base'
 # init base service Objects
 class ServiCraftGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
