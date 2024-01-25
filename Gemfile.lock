@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/chuquimm/echo_craft
-  revision: a672851b7e6feea90dc5c779b9124e40191096a3
+  revision: 052dc7567199c0b37ff2b104d7a83da01f33f965
   specs:
-    echo_craft (0.1.0)
+    echo-craft (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -248,7 +248,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  echo_craft (= 0.1.0)!
+  echo-craft (= 0.1.0)!
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder

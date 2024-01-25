@@ -71,4 +71,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'echo_craft', '0.1.0', git: 'https://github.com/chuquimm/echo_craft'
+gem 'echo-craft', '0.1.0', git: 'https://github.com/chuquimm/echo_craft'
