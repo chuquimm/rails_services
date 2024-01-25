@@ -201,7 +201,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    servi-craft (0.1.0)
+    servi-craft (0.1.1)
       echo-craft (= 0.1.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -245,14 +245,13 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  echo-craft (= 0.1.0)
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder
   puma (>= 5.0)
   rails (~> 7.1.2)
   selenium-webdriver
-  servi-craft (~> 0.1.0)
+  servi-craft (~> 0.1.1)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
