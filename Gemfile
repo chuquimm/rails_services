@@ -70,3 +70,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'echo_craft', '0.1.0', git: 'https://github.com/chuquimm/echo_craft'

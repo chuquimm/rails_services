@@ -3,6 +3,8 @@
 module ServiCraft
   # UpdateRecordService
   class Update
+    require 'echo_craft/service_objects/update'
+
     attr_reader :model, :record, :params, :response
 
     def initialize(record, params)

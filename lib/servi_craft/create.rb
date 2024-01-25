@@ -3,6 +3,8 @@
 module ServiCraft
   # CreateRecordService
   class Create
+    require 'echo_craft/service_objects/create'
+
     attr_reader :model, :record, :params, :response
 
     def initialize(model, params)
