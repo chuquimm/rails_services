@@ -73,3 +73,4 @@ end
 
 gem 'model-ancestry', '~> 0.1.0'
 gem 'servi-craft', '~> 0.1.1'
+gem 'sobremesa', '~> 0.1.0'

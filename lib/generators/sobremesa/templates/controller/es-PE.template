@@ -1,9 +1,0 @@
-<%= @language %>:
-  controller:
-    <%= "#{@modules.join('/')}" %><%="#{@modules.empty? ? '' : '/'}"%><%= "#{file_name.pluralize.underscore}" %>:
-      success:
-        create: '<%= @dic[:art_singular].capitalize %> fue cread<%= @dic[:termination].downcase %> correctamente'
-        update: 'Los datos <%= @dic[:dart_singular] %> fueron modificados correctamente'
-        destroy: '<%= @dic[:art_singular].capitalize %> fue eliminad<%= @dic[:termination].downcase %> correctamente'
-      error:
-        destroy: '<%= @dic[:art_singular].capitalize %> no pudo ser eliminad<%= @dic[:termination].downcase %>'
