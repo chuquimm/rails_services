@@ -1,0 +1,9 @@
+es-PE:
+  controller:
+    projects:
+      success:
+        create: 'El proyecto fue creado correctamente'
+        update: 'Los datos del proyecto fueron modificados correctamente'
+        destroy: 'El proyecto fue eliminado correctamente'
+      error:
+        destroy: 'El proyecto no pudo ser eliminado'

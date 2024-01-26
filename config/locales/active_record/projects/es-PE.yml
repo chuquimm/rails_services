@@ -1,0 +1,12 @@
+es-PE:
+  activerecord:
+    attributes:
+      project:
+        _self:  'Proyecto'
+        _self_plural: 'Proyectos'
+        name: 'Nombre'
+        description: 'Descripción'
+    errors:
+      models:
+          project:
+            attributes:

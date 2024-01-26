@@ -1,0 +1,34 @@
+es-PE:
+  view:
+    projects:
+      index:
+        title: 'Gestionar proyectos'
+        new_link: 'Crear proyecto'
+        show_link: 'Configurar'
+      show:
+        back_link: 'Volver a la lista de proyectos'
+        title: 'Datos del proyecto'
+        edit_link: 'Editar'
+        edit_pass_link: 'Editar contraseña'
+        edit_char_link: 'Editar'
+        destroy_link: 'Eliminar'
+        destroy_confirm_message: '¿Está seguro de eliminar el proyecto?'
+      new:
+        back_link: 'Volver a la lista de proyectos'
+        form_title: 'Crear proyecto'
+        save_button: 'Crear'
+      create:
+        back_link: 'Volver a la lista de proyectos'
+        form_title: 'Crear proyecto'
+        save_button: 'Crear'
+      edit:
+        back_link: 'Volver a configurar el proyecto'
+        form_title: 'Editar proyecto'
+        form_photo_message: 'Archivo formato jpg o png, menor a 1mb'
+        save_button: 'Guardar'
+      update:
+        back_link: 'Volver a configurar el proyecto'
+        form_title: 'Editar proyecto'
+        save_button: 'Guardar'
+      _show_basic_info:
+        title: 'Usuario'
