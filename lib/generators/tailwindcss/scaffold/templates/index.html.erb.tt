@@ -4,8 +4,8 @@
   <%% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl"><%= human_name.pluralize %></h1>
-    <%%= link_to "New <%= human_name.downcase %>", new_<%= singular_route_name %>_path<% if @parent_attribute %>(<%= @parent_attribute.name %>)<% end %>, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl"><%%= v_t("title") %></h1>
+    <%%= link_to v_t("new_link"), new_<%= singular_route_name %>_path<% if @parent_attribute %>(<%= @parent_attribute.name %>)<% end %>, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="<%= plural_table_name %>" class="min-w-full">

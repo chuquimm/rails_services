@@ -27,7 +27,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = ::<%= class_name.pluralize %>::Create.new(<% if @parent_attribute %>@<%= @parent_attribute.name %>, <% end %><%= singular_table_name %>_params).call.record
 
     if @<%= singular_table_name %>.persisted?
-      redirect_to <%= redirect_resource_name %>, notice: <%= %('#{human_name} was successfully created.') %>
+      redirect_to <%= redirect_resource_name %>, notice: c_t('success.create')
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if ::<%= class_name.pluralize %>::Update.new(@<%= singular_table_name %>, <%= singular_table_name %>_params).call.successful
-      redirect_to <%= redirect_resource_name %>, notice: <%= %('#{human_name} was successfully updated.') %>, status: :see_other
+      redirect_to <%= redirect_resource_name %>, notice: c_t('success.update'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,8 +44,11 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # DELETE <%= route_url %>/1
   def destroy
-    ::<%= class_name.pluralize %>::Destroy.new(@<%= singular_table_name %>).call
-    redirect_to <%= index_helper %>_url, notice: <%= %('#{human_name} was successfully destroyed.') %>, status: :see_other
+    if ::<%= class_name.pluralize %>::Destroy.new(@<%= singular_table_name %>).call.successful
+      redirect_to <%= index_helper %>_url, notice: c_t('success.destroy'), status: :see_other
+    else
+      redirect_to <%= index_helper %>_url, notice: c_t('error.destroy'), status: :see_other
+    end
   end
 
   private

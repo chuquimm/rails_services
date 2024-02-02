@@ -18,7 +18,9 @@ module RailsServices
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
+
     config.autoload_paths << Rails.root.join('config', 'routes')
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     config.generators do |generate|
       generate.resource_route false

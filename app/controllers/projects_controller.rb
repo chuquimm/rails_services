@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @project = ::Projects::Create.new(project_params).call.record
 
     if @project.persisted?
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: c_t('success.create')
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if ::Projects::Update.new(@project, project_params).call.successful
-      redirect_to @project, notice: 'Project was successfully updated.', status: :see_other
+      redirect_to @project, notice: c_t('success.update'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,8 +42,11 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
-    ::Projects::Destroy.new(@project).call
-    redirect_to projects_url, notice: 'Project was successfully destroyed.', status: :see_other
+    if ::Projects::Destroy.new(@project).call.successful
+      redirect_to projects_url, notice: c_t('success.destroy'), status: :see_other
+    else
+      redirect_to projects_url, notice: c_t('error.destroy'), status: :see_other
+    end
   end
 
   private
