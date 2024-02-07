@@ -72,5 +72,5 @@ group :test do
 end
 
 gem 'model-ancestry', '~> 0.1.0'
-gem 'servi-craft', '~> 0.1.2'
+gem 'servi-craft', '~> 0.1.3'
 gem 'sobremesa', '~> 0.1.0'

@@ -1,14 +1,46 @@
-<div class="w-full">
+<div class="mt-6">
   <%% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%%= notice %></p>
   <%% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl"><%%= v_t("title") %></h1>
-    <%%= link_to v_t("new_link"), new_<%= singular_route_name %>_path<% if @parent_attribute %>(<%= @parent_attribute.name %>)<% end %>, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900"><%%= v_t('title') %></h1>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg px-6 py-2 text-base">
+        <%%= link_to ('<i class="fas fa-plus"></i> '+v_t('new_link')).html_safe, new_<%=singular_table_name%>_path<% if @parent_attribute %>(<%= @parent_attribute.name %>)<% end %>, class: "link" %>
+      </div>
+    </div>
   </div>
-
-  <div id="<%= plural_table_name %>" class="min-w-full">
-    <%%= render @<%= plural_table_name %> %>
+  <div class="mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th scope="col" class="table-header-cell">#</th>
+                <% attributes.each do |attribute| -%>
+                  <th scope="col" class="table-header-cell"><%%= ar_t('<%=singular_table_name%>.<%=attribute.column_name%>') %></th>
+                <% end %>
+                <th scope="col" class="table-header-cell"></th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <%% @<%=singular_table_name%>s.each_with_index do |<%=singular_table_name%>, index| %>
+                <tr class="table-row">
+                  <td class="table-cell-pos"><%%= index+1 %></td>
+                  <% attributes.each do |attribute| -%>
+                    <td class="table-cell"><%%=<%=singular_table_name%>.<%=attribute.column_name%>%></td>
+                  <% end %>
+                  <td class="table-cell-action"><%%= link_to v_t('show_link'), <%=singular_table_name%>_path(<%=singular_table_name%>), class: "link" %></td>
+                </tr>
+              <%% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

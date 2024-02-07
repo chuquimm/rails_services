@@ -1,14 +1,46 @@
-<div class="w-full">
+<div class="mt-6">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl"><%= v_t("title") %></h1>
-    <%= link_to v_t("new_link"), new_project_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900"><%= v_t('title') %></h1>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg px-6 py-2 text-base">
+        <%= link_to ('<i class="fas fa-plus"></i> '+v_t('new_link')).html_safe, new_project_path, class: "link" %>
+      </div>
+    </div>
   </div>
-
-  <div id="projects" class="min-w-full">
-    <%= render @projects %>
+  <div class="mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th scope="col" class="table-header-cell">#</th>
+                                  <th scope="col" class="table-header-cell"><%= ar_t('project.name') %></th>
+                                  <th scope="col" class="table-header-cell"><%= ar_t('project.description') %></th>
+                
+                <th scope="col" class="table-header-cell"></th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <% @projects.each_with_index do |project, index| %>
+                <tr class="table-row">
+                  <td class="table-cell-pos"><%= index+1 %></td>
+                                      <td class="table-cell"><%=project.name%></td>
+                                      <td class="table-cell"><%=project.description%></td>
+                  
+                  <td class="table-cell-action"><%= link_to v_t('show_link'), project_path(project), class: "link" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

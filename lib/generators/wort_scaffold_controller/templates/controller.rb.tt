@@ -8,7 +8,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # GET <%= route_url %>
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    @<%= plural_table_name %> = ::<%= class_name.pluralize %>::Query.new.call.query
   end
 
   # GET <%= route_url %>/1
@@ -27,7 +27,8 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = ::<%= class_name.pluralize %>::Create.new(<% if @parent_attribute %>@<%= @parent_attribute.name %>, <% end %><%= singular_table_name %>_params).call.record
 
     if @<%= singular_table_name %>.persisted?
-      redirect_to <%= redirect_resource_name %>, notice: c_t('success.create')
+      flash[:success] = c_t('success.create')
+      redirect_to <%= redirect_resource_name %>
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +37,8 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if ::<%= class_name.pluralize %>::Update.new(@<%= singular_table_name %>, <%= singular_table_name %>_params).call.successful
-      redirect_to <%= redirect_resource_name %>, notice: c_t('success.update'), status: :see_other
+      flash[:success] = c_t('success.update')
+      redirect_to <%= redirect_resource_name %>, status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,9 +47,11 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     if ::<%= class_name.pluralize %>::Destroy.new(@<%= singular_table_name %>).call.successful
-      redirect_to <%= index_helper %>_url, notice: c_t('success.destroy'), status: :see_other
+      flash[:success] = c_t('success.destroy')
+      redirect_to <%= index_helper %>_url, status: :see_other
     else
-      redirect_to <%= index_helper %>_url, notice: c_t('error.destroy'), status: :see_other
+      flash[:danger] = c_t('error.destroy')
+      redirect_to @<%= singular_table_name %>, status: :see_other
     end
   end
 

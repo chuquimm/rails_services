@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
+    @projects = ::Projects::Query.new.call.query
   end
 
   # GET /projects/1
@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
     @project = ::Projects::Create.new(project_params).call.record
 
     if @project.persisted?
-      redirect_to @project, notice: c_t('success.create')
+      flash[:success] = c_t('success.create')
+      redirect_to @project
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +35,8 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if ::Projects::Update.new(@project, project_params).call.successful
-      redirect_to @project, notice: c_t('success.update'), status: :see_other
+      flash[:success] = c_t('success.update')
+      redirect_to @project, status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,9 +45,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     if ::Projects::Destroy.new(@project).call.successful
-      redirect_to projects_url, notice: c_t('success.destroy'), status: :see_other
+      flash[:success] = c_t('success.destroy')
+      redirect_to projects_url, status: :see_other
     else
-      redirect_to projects_url, notice: c_t('error.destroy'), status: :see_other
+      flash[:danger] = c_t('error.destroy')
+      redirect_to @project, status: :see_other
     end
   end
 

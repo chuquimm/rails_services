@@ -101,7 +101,7 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.0)
       ruby2_keywords
-    echo-craft (0.1.0)
+    echo-craft (0.1.1)
     error_highlight (0.6.0)
     erubi (1.12.0)
     globalid (1.2.1)
@@ -202,8 +202,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    servi-craft (0.1.2)
-      echo-craft (= 0.1.0)
+    servi-craft (0.1.3)
+      echo-craft (= 0.1.1)
       model-ancestry (~> 0.1.0)
       rails (~> 7.0)
     sobremesa (0.1.0)
@@ -257,7 +257,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.2)
   selenium-webdriver
-  servi-craft (~> 0.1.2)
+  servi-craft (~> 0.1.3)
   sobremesa (~> 0.1.0)
   sprockets-rails
   sqlite3 (~> 1.4)
